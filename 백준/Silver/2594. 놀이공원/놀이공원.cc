@@ -1,86 +1,82 @@
 #include <iostream>
 #include <algorithm>
-#include <string>
 #include <vector>
 #include <utility>
 
 using namespace std;
 
-vector< pair<string, string> >	times;
-
+vector<pair<int, int>>	times;
 void	fastio(void);
-int	diff(string start, string end, int flag);
+void	push(int start, int end);
+int		diff(int start, int end);
 
 int main(void)
 {
 	int	num, max = 0;
-	string	begin("0950"), fin("2210");
-	string	start, end;
+	int	begin = 1000, fin = 2200;
+	int	start, end;
 
 	fastio();
 	cin >> num;
 	for (int i = 0; i < num; i++)
 	{
 		cin >> start >> end;
-		times.push_back(make_pair(start, end));
+		push(start, end);
 		for (int j = 0; j < times.size() - 1; j++)
 		{
-			if (diff(times[j].first, start, 0) && diff(end, times[j].second, 0))
+			if (diff(times[j].first, times.back().first) && diff(times.back().second, times[j].second))
 			{
 				times.pop_back();
 				break;
 			}
 		}
-
 	}
 	sort(times.begin(), times.end());
-	max = diff(begin, times[0].first, 1);
-	max < diff(times.back().second, fin, 1) ? max = diff(times.back().second, fin, 1) : max;
+	max = diff(begin, times[0].first);
+	if (max < diff(times.back().second, fin))
+		max = diff(times.back().second, fin);
 	for (int i = 0; i < times.size() - 1; i++)
-		max < diff(times[i].second, times[i + 1].first, 1) ? max = diff(times[i].second, times[i + 1].first, 1) : max;
+		if (max < diff(times[i].second, times[i + 1].first))
+			max = diff(times[i].second, times[i + 1].first);
 	cout << max << "\n";
 	return (0);
 }
 
-int	diff(string start, string end, int flag)
+void	push(int start, int end)
 {
-	string	s_time = start.substr(0, 2);
-	string	s_min = start.substr(2, 2);
-	string	e_time = end.substr(0, 2);
-	string	e_min = end.substr(2, 2);
+	int	s_time = start / 100;
+	int	s_min = start % 100;
+	int	e_time = end / 100;
+	int	e_min = end % 100;
 	int	diff = 0;
 
-	if (flag)
+	s_min -= 10;
+	if (s_min < 0)
 	{
-		s_min[0]++;
-		if (s_min[0] >= '6')
-		{
-			s_min[0] = '0';
-			s_time[1]++;
-			if (s_time[1] > '9')
-			{
-				s_time[0]++;
-				s_time[1] = '0';
-			}
-		}
-		if (e_min[0] == '0')
-		{
-			if (e_time[1] == '0')
-			{
-				e_time[0]--;
-				e_time[1] = '9';
-			}
-			else
-				e_time[1]--;
-			e_min[0] = '5';
-		}
-		else
-			e_min[0]--;
+		s_min += 60;
+		s_time--;
 	}
+	e_min += 10;
+	if (e_min >= 60)
+	{
+		e_min -= 60;
+		e_time++;
+	}
+	times.push_back({ s_time * 100 + s_min, e_time * 100 + e_min });
+}
+
+int	diff(int start, int end)
+{
+	int	s_time = start / 100;
+	int	s_min = start % 100;
+	int	e_time = end / 100;
+	int	e_min = end % 100;
+	int	diff = 0;
+
 	if (s_time <= e_time)
 	{
-		diff += (stoi(e_time) - stoi(s_time)) * 60;
-		diff += stoi(e_min) - stoi(s_min);
+		diff += (e_time - s_time) * 60;
+		diff += e_min - s_min;
 	}
 	return (diff >= 0 ? diff : 0);
 }
