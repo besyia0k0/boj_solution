@@ -34,7 +34,7 @@ void	find_string(string s)
 	{
 		if (word[i].length() == str_size)
 		{
-			size_t idx = s.find(word[i][0]);
+			int idx = s.find(word[i][0]);
 			while (idx != string::npos)
 			{
 				if (s.substr(idx) == word[i].substr(0, str_size - idx))
