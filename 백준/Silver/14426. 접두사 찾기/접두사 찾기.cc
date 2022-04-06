@@ -25,7 +25,7 @@ int main(void)
 	{
 		cin >> s;
 		for (iter = mmap.equal_range(s[0]).first; iter != mmap.equal_range(s[0]).second; iter++)
-			if (iter->second.find(s) != string::npos)
+			if (iter->second.find(s) == 0)
 			{	ret++;	break;}
 	}
 	cout << ret << "\n";
