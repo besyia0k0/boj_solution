@@ -5,7 +5,6 @@ using namespace std;
 
 char	map[11][11];
 char	opened[11][11];
-char	ret[11][11];
 int		n, boom;
 
 void	fastio(void);
@@ -34,18 +33,17 @@ int main(void)
 			if (opened[i][j] == 'x')
 			{
 				if (map[i][j] == '*')
-					ret[i][j] = map[i][j];
+					cout << map[i][j];
 				else
-				 	ret[i][j] = check(i, j) + '0';
+				 	cout << (char)(check(i, j) + '0');
 			}
 			else if (boom)
-				ret[i][j] = map[i][j];
+				cout << map[i][j];
 			else
-				ret[i][j] = '.';
+				cout << ".";
 		}
+        cout << "\n";
 	}
-	for (int i = 0; i < n; i++)
-		cout << ret[i] <<'\n';
 	return (0);
 }
 
