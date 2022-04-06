@@ -33,7 +33,7 @@ int main(void)
 		{
 			if (opened[i][j] == 'x')
 			{
-				if (boom && map[i][j] == '*')
+				if (map[i][j] == '*')
 					ret[i][j] = map[i][j];
 				else
 				 	ret[i][j] = check(i, j) + '0';
