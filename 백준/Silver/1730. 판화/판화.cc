@@ -6,18 +6,17 @@
 using namespace std;
 
 char	map[11][11];
-int		n, x, y;
+char	pre;
+int		n, x, y, x_tmp, y_tmp;
 void	fastio(void);
 int		set_dir(char c);
+void	set_map(char prev1, char prev2, char c1, char c2);
 
 int main(void)
 {
 	string	s;
-	int		x_tmp, y_tmp;
-	char	prev;
 
 	fastio();
-	prev = 0;
 	cin >> n;
 	cin >> s;
 	memset(map, '.', sizeof(map));
@@ -33,72 +32,50 @@ int main(void)
 		{
 			case 'D':
 			case 'U':
-				if (prev == 0 || prev == 'D' || prev == 'U')
-				{
-					if (map[x_tmp][y_tmp] != '+')
-					{
-						if (map[x_tmp][y_tmp] == '-')
-							map[x_tmp][y_tmp] = '+';
-						else
-							map[x_tmp][y_tmp] = '|';
-					}
-					if (map[x][y] != '+')
-					{
-						if (map[x][y] == '-')
-							map[x][y] = '+';
-						else
-							map[x][y] = '|';
-					}
-				}
-				else
-				{
-					map[x_tmp][y_tmp] = '+';
-					if (map[x][y] != '+')
-					{
-						if (map[x][y] == '-')
-							map[x][y] = '+';
-						else
-							map[x][y] = '|';
-					}
-				}
+				set_map('D', 'U', '|', '-');
 				break;
 			case 'R':
 			case 'L':
-				if (prev == 0 || prev == 'R' || prev == 'L')
-				{
-					if (map[x_tmp][y_tmp] != '+')
-					{
-						if (map[x_tmp][y_tmp] == '|')
-							map[x_tmp][y_tmp] = '+';
-						else
-							map[x_tmp][y_tmp] = '-';
-					}
-					if (map[x][y] != '+')
-					{
-						if (map[x][y] == '|')
-							map[x][y] = '+';
-						else
-							map[x][y] = '-';
-					}
-				}
-				else
-				{
-					map[x_tmp][y_tmp] = '+';
-					if (map[x][y] != '+')
-					{
-						if (map[x][y] == '|')
-							map[x][y] = '+';
-						else
-							map[x][y] = '-';
-					}
-				}
+				set_map('R', 'L', '-', '|');
 				break;
 		}
-		prev = s[i];
+		pre = s[i];
 	}
 	for (int i = 0; i < n; i++)
 		cout << map[i] << "\n";
 	return (0);
+}
+
+void	set_map(char prev1, char prev2, char c1, char c2)
+{
+	if (pre == 0 || pre == prev1 || pre == prev2)
+	{
+		if (map[x_tmp][y_tmp] != '+')
+		{
+			if (map[x_tmp][y_tmp] == c2)
+				map[x_tmp][y_tmp] = '+';
+			else
+				map[x_tmp][y_tmp] = c1;
+		}
+		if (map[x][y] != '+')
+		{
+			if (map[x][y] == c2)
+				map[x][y] = '+';
+			else
+				map[x][y] = c1;
+		}
+	}
+	else
+	{
+		map[x_tmp][y_tmp] = '+';
+		if (map[x][y] != '+')
+		{
+			if (map[x][y] == c2)
+				map[x][y] = '+';
+			else
+				map[x][y] = c1;
+		}
+	}
 }
 
 int	set_dir(char c)
