@@ -2,14 +2,11 @@
 #include <string>
 using namespace std;
 
-void	fastio(void);
-
 int main(void)
 {
 	string n, tmp;
-	int num, times = 1, ret = 0;
+	int num, ret = 0;
 
-	fastio();
 	cin >> n;
 	num = stoi(n);
 	for (int i = ((num - (n.length() * 9)) > 0 ? (num - (n.length() * 9)) : 0); i <= num; i++)
@@ -24,11 +21,4 @@ int main(void)
 	}
 	cout << tmp << "\n";
 	return (0);
-}
-
-void	fastio(void)
-{
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-	cout.tie(NULL);
 }
