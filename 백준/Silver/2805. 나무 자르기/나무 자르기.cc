@@ -10,8 +10,8 @@ bool	check(vector<int> tree, long long tmp_len, int goal);
 int main(void)
 {
 	vector<int> tree;
-	int n, len;
-	long long	min = 0, max = 0, tmp, ret = 0;
+	int n, len, ret = 0;
+	long long	min = 0, max = 0, tmp;
 	
 	fastio();
 	cin >> n >> len;
