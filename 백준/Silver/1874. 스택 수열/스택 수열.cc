@@ -1,10 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <limits.h>
-#include <cmath>
 using namespace std;
-
-void	fastio(void);
 
 int main(void)
 {
@@ -42,15 +38,6 @@ int main(void)
 		}
 	}
 	for (auto i : cal)
-	{
 		cout << i << "\n";
-	}
 	return (0);
-}
-
-void	fastio(void)
-{
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-	cout.tie(NULL);
 }
