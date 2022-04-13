@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <limits.h>
+#include <cmath>
 using namespace std;
 
 void	fastio(void);
@@ -23,14 +24,10 @@ int main(void)
 	}
 	min /= make;
 	max /= make;
-	tmp = (min + max) / 2;
-	if (!tmp)
-		tmp = 1;
+	tmp = ceil((double)(min + max) / 2);
 	while (min <= max)
 	{
-		tmp = (min + max) / 2;
-		if (!tmp)
-			tmp = 1;
+		tmp = ceil((double)(min + max) / 2);
 		if (check(lines, tmp, make))
 		{
 			ret = ((ret > tmp) ? ret : tmp);
