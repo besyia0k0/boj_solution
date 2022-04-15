@@ -47,13 +47,9 @@ bool isfull(int x_idx, int y_idx, int p_size)
 	char c = paper[x_idx][y_idx];
 
 	for (int i = 0; i < p_size; i++)
-	{
 		for (int j = 0; j < p_size; j++)
-		{
 			if (paper[x_idx + i][y_idx + j] != c)
 				return (false);
-		}
-	}
 	if (c == '0')
 		white_cnt++;
 	return (true);
