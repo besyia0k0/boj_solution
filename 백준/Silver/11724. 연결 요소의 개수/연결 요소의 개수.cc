@@ -17,6 +17,7 @@ int main(void)
 {
 	int node, line, x, y, ret = 0;
 
+	fastio;
 	cin >> node >> line;
 	for (int i = 0; i < line; i++)
 	{
