@@ -53,7 +53,7 @@ int main(void)
 					}
 				}
 		if (tmp_block != -1)
-			if (tmp_time < time || (tmp_time == time && i > height))
+			if (tmp_time <= time)
 			{
 				height = i;
 				time = tmp_time;
