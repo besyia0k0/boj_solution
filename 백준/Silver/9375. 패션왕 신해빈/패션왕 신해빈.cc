@@ -1,9 +1,6 @@
 #include <iostream>
 #include <string>
-#include <cstring>
-#include <vector>
 #include <map>
-#include <algorithm>
 #define fastio                      \
 	ios_base::sync_with_stdio(false); \
 	cin.tie(NULL);                    \
