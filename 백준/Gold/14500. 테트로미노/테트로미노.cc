@@ -12,7 +12,7 @@ int paper[501][501];
 short visited[20][20];
 deque<pair<int, int>> pos;
 int n, m, max_num = 0;
-void bfs_check(int x, int y, int times, int size);
+void dfs_check(int x, int y, int times, int size);
 void check(int x, int y);
 bool comp(pair<int, pair<int, int>> x, pair<int, pair<int, int>> y);
 
@@ -25,7 +25,7 @@ int main(void)
 			cin >> paper[i][j];
 	for (int i = 0; i < n; i++)
 		for (int j = 0; j < m; j++)
-			bfs_check(i, j, 0, 0);
+			dfs_check(i, j, 0, 0);
 	for (int i = 0; i < n; i++)
 		for (int j = 0; j < m; j++)
 			check(i, j);
@@ -65,7 +65,7 @@ void check(int x, int y)
 	max_num = (tmp > max_num ? tmp : max_num);
 }
 
-void bfs_check(int x, int y, int times, int size)
+void dfs_check(int x, int y, int times, int size)
 {
 	pair<int, int> dir[4] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 	pair<int, int> node;
@@ -82,7 +82,7 @@ void bfs_check(int x, int y, int times, int size)
 		memset(visited, 0, sizeof(visited));
 		visited[9][9] = 1;
 		pos.push_back({x, y});
-		bfs_check(x, y, 1, paper[x][y]);
+		dfs_check(x, y, 1, paper[x][y]);
 		return;
 	}
 	node = pos.back();
@@ -95,7 +95,7 @@ void bfs_check(int x, int y, int times, int size)
 		{
 			pos.push_back({tmp_x, tmp_y});
 			visited[9 + (tmp_x - x)][9 + (tmp_y - y)] = 1;
-			bfs_check(x, y, times + 1, size + paper[tmp_x][tmp_y]);
+			dfs_check(x, y, times + 1, size + paper[tmp_x][tmp_y]);
 			visited[9 + (tmp_x - x)][9 + (tmp_y - y)] = 0;
 		}
 	}
