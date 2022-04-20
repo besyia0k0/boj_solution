@@ -11,7 +11,6 @@ short visited[20][20];
 int n, m, a, b, max_num = 0;
 void dfs_check(int x, int y, int times, int size);
 void check(int x, int y);
-bool comp(pair<int, pair<int, int>> x, pair<int, pair<int, int>> y);
 
 int main(void)
 {
