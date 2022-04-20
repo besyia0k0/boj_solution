@@ -1,7 +1,5 @@
 #include <iostream>
 #include <memory.h>
-#include <deque>
-#include <algorithm>
 #define fastio                      \
 	ios_base::sync_with_stdio(false); \
 	cin.tie(NULL);                    \
@@ -10,8 +8,7 @@ using namespace std;
 
 int paper[501][501];
 short visited[20][20];
-deque<pair<int, int>> pos;
-int n, m, max_num = 0;
+int n, m, a, b, max_num = 0;
 void dfs_check(int x, int y, int times, int size);
 void check(int x, int y);
 bool comp(pair<int, pair<int, int>> x, pair<int, pair<int, int>> y);
@@ -23,9 +20,9 @@ int main(void)
 	for (int i = 0; i < n; i++)
 		for (int j = 0; j < m; j++)
 			cin >> paper[i][j];
-	for (int i = 0; i < n; i++)
-		for (int j = 0; j < m; j++)
-			dfs_check(i, j, 0, 0);
+	for (; a < n; a++)
+		for (b = 0; b < m; b++)
+			dfs_check(a, b, 1, paper[a][b]);
 	for (int i = 0; i < n; i++)
 		for (int j = 0; j < m; j++)
 			check(i, j);
@@ -68,7 +65,6 @@ void check(int x, int y)
 void dfs_check(int x, int y, int times, int size)
 {
 	pair<int, int> dir[4] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
-	pair<int, int> node;
 	int tmp_x, tmp_y;
 
 	if (times == 4)
@@ -77,26 +73,20 @@ void dfs_check(int x, int y, int times, int size)
 			max_num = size;
 		return;
 	}
-	if (times == 0)
+	if (times == 1)
 	{
 		memset(visited, 0, sizeof(visited));
 		visited[9][9] = 1;
-		pos.push_back({x, y});
-		dfs_check(x, y, 1, paper[x][y]);
-		return;
 	}
-	node = pos.back();
-	pos.pop_back();
 	for (int i = 0; i < 4; i++)
 	{
-		tmp_x = node.first + dir[i].first;
-		tmp_y = node.second + dir[i].second;
-		if (tmp_x >= 0 && tmp_y >= 0 && tmp_x < n && tmp_y < m && !visited[9 + (tmp_x - x)][9 + (tmp_y - y)])
+		tmp_x = x + dir[i].first;
+		tmp_y = y + dir[i].second;
+		if (tmp_x >= 0 && tmp_y >= 0 && tmp_x < n && tmp_y < m && !visited[9 + (tmp_x - a)][9 + (tmp_y - b)])
 		{
-			pos.push_back({tmp_x, tmp_y});
-			visited[9 + (tmp_x - x)][9 + (tmp_y - y)] = 1;
-			dfs_check(x, y, times + 1, size + paper[tmp_x][tmp_y]);
-			visited[9 + (tmp_x - x)][9 + (tmp_y - y)] = 0;
+			visited[9 + (tmp_x - a)][9 + (tmp_y - b)] = 1;
+			dfs_check(tmp_x, tmp_y, times + 1, size + paper[tmp_x][tmp_y]);
+			visited[9 + (tmp_x - a)][9 + (tmp_y - b)] = 0;
 		}
 	}
 }
