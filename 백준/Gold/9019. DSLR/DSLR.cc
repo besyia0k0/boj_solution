@@ -9,6 +9,7 @@
 using namespace std;
 
 string bfs(int cur, int target);
+bool visited[10001];
 
 int main(void)
 {
@@ -28,7 +29,6 @@ string bfs(int cur, int target)
 {
 	queue<pair<int, string>> q;
 	pair<int, string> node;
-	bool visited[10001];
 	int tmp;
 
 	memset(visited, 0, sizeof(visited));
