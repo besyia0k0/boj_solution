@@ -12,6 +12,7 @@ int main(void)
 {
 	int n, m, x, y, tc, great;
 
+    fastio;
 	cin >> tc;
 	while (tc--)
 	{
