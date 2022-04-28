@@ -53,12 +53,12 @@ int main(void)
 					visited[cur + i] = 1;
 					q.push({cur + i, times + 1});
 				}
-				else if (a && !visited[a])
+				if (a && !visited[a])
 				{
 					visited[a] = 1;
 					q.push({a, times + 1});
 				}
-				else if (b && !visited[b])
+				if (b && !visited[b])
 				{
 					visited[b] = 1;
 					q.push({b, times + 1});
