@@ -17,6 +17,7 @@ int main(void)
 	int node, parent, child, weight;
 	pair<int, int> max_node;
 
+    fastio;
 	cin >> node;
 	for (int i = 0; i < node; i++)
 	{
