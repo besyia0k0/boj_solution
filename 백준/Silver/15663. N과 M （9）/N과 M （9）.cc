@@ -59,11 +59,10 @@ void recur(int times)
 	{
 		if (nums[i].second)
 		{
-			int k = nums[i].first.size();
 			nums[i].first.push_back(times);
 			nums[i].second--;
 			recur(times + 1);
-			nums[i].first.erase(nums[i].first.begin() + k);
+			nums[i].first.pop_back();
 			nums[i].second++;
 		}
 	}
