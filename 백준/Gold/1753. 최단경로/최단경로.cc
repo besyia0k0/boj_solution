@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <queue>
-#include <memory.h>
 #include <algorithm>
 #define fastio                      \
 	ios_base::sync_with_stdio(false); \
