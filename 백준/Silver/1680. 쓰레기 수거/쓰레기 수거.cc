@@ -11,6 +11,7 @@ int main(void)
 	vector<pair<int, int>> lst;
 	int t_case, truck_size, trash_num, dist, trash, cur_size, cur_dist, tot_dist;
 
+    fastio;
 	cin >> t_case;
 	while (t_case--)
 	{
