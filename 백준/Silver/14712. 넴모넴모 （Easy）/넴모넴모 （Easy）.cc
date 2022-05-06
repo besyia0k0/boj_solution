@@ -6,7 +6,6 @@
 	cout.tie(NULL)
 using namespace std;
 
-bool visited[26][26];
 bool map[26][26];
 int result, n, m;
 void recur(int times);
@@ -28,20 +27,13 @@ void recur(int times)
 		result++;
 		return;
 	}
-	if (!visited[x][y])
+	if (!(x > 0 && y > 0 && (map[x - 1][y] && map[x][y - 1] && map[x - 1][y - 1])))
 	{
-		if (!(x > 0 && y > 0 && (map[x - 1][y] && map[x][y - 1] && map[x - 1][y - 1])))
-		{
-			visited[x][y] = true;
-			map[x][y] = true;
-			recur(x * m + y + 1);
-			visited[x][y] = false;
-			map[x][y] = false;
-		}
-		visited[x][y] = true;
-		map[x][y] = false;
+		map[x][y] = true;
 		recur(x * m + y + 1);
-		visited[x][y] = false;
 		map[x][y] = false;
 	}
+	map[x][y] = false;
+	recur(x * m + y + 1);
+	map[x][y] = false;	
 }
