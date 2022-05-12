@@ -12,11 +12,16 @@ int main(void)
 {
 	int n, m, x, y, tc, great;
 
-    fastio;
+	fastio;
 	cin >> tc;
 	while (tc--)
 	{
 		cin >> n >> m >> x >> y;
+		if (x == n && m == y)
+		{
+			cout << lcm(n, m)<<"\n";
+			continue;
+		}
 		if (x == n)
 			x = 0;
 		if (y == m)
